@@ -1,15 +1,16 @@
+#pragma once
 #include "Server.h"
-#include "QueryString.h"
+#include "Request.h"
+
 
 
 
 
 int main() {
-
+	//GET / index HTTP / 1.1
 	//Server server(8080);
 	//server.run();
-	QueryString q{};
-	char query[] = "a=1&b=2&c=3";
-	q.createQueryString(query);
+	Request request;
+	request.CreateRequest("GET /index?a=1 HTTP/1.1\r\n\r\n");
 	return 0;
 }

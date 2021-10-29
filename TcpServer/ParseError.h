@@ -1,8 +1,9 @@
 #pragma once
 
-enum ParseError {
-    InvalidRequest,
-    InvalidEnconding,
-    InvalidProtocol,
-    InvalidMethod,
+enum class ParseError {
+	InvalidRequest,
+	InvalidEnconding,
+	InvalidProtocol,
+	InvalidMethod,
 };
+

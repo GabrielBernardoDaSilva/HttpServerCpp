@@ -17,3 +17,42 @@ std::vector<std::string> Helpers::split_char(char cstr[], const char* del)
     
     return splited_char;
 }
+
+std::tuple<std::string, std::string> Helpers::get_next_word(std::string full_string)
+{
+    for (size_t i = 0; i < full_string.size(); i++) {
+        if (full_string[i] == ' ' || full_string[i] == '\r')
+        {
+            return std::make_tuple(full_string.substr(0, i), full_string.substr(i + 1, full_string.size()));
+        }
+    }
+    return std::make_tuple("", "");
+}
+
+Method Helpers::StringToMethod(const char* method)
+{
+    auto it = table.find(method);
+    if (it != table.end()) {
+        return it->second;
+    }
+    else {
+        return Method::ERR;
+    }
+}
+
+const char* Helpers::ParserErrorToString(ParseError err)
+{
+    switch (err)
+    {
+    case ParseError::InvalidRequest:
+        return "InvalidRequest";
+    case ParseError::InvalidEnconding:
+        return "InvalidEnconding";
+    case ParseError::InvalidProtocol:
+        return "InvalidProtocol";
+    case ParseError::InvalidMethod:
+        return "InvalidMethod";
+    default:
+        return "UnknowError";
+    }
+}

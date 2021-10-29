@@ -23,6 +23,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QueryString.cpp" />
     <ClCompile Include="Request.cpp" />
+    <ClCompile Include="Response.cpp" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="ParseError.h" />
     <ClInclude Include="QueryString.h" />
     <ClInclude Include="Request.h" />
+    <ClInclude Include="Response.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -131,6 +133,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

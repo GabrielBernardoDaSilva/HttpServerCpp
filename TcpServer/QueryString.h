@@ -6,12 +6,14 @@
 class QueryString
 {
 private:
-	std::unordered_map<const char*, const char*> data{};
+	std::unordered_map<std::string, std::string> data{};
 public:
-	const std::unordered_map<const char*, const char*> getData()const {
+	const std::unordered_map<std::string, std::string>& getData() const {
 		return data;
 	}
-	void createQueryString(char* bufferQueryString);
+	QueryString(std::string bufferQueryString);
+	~QueryString();
+	void createQueryString(std::string);
 
 	
 };
