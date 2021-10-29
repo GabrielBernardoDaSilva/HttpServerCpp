@@ -16,6 +16,7 @@ Server::~Server()
 
 void Server::run()
 {
+	//GET / HTTP/1.1
 	std::cout << "Listening on 127.0.0.1:" << port << std::endl;
 	while (true)
 	{
@@ -42,9 +43,9 @@ void Server::run()
 		int bytesReceived = recv(clientSocket, buf, 4096, 0);
 
 		if (bytesReceived > 0) {
-
-			std::cout << "Call " << buf << std::endl;
-			send(clientSocket, "HTTP1.1 200 OK\r\n\r\n<h1>HELLO DESKTOP</h1>", sizeof(char) * 40, 0);
+			
+			std::cout << buf << std::endl;
+			send(clientSocket, "HTTP/1.1 200 OK\r\n\r\n<h1>HELLO DESKTOP</h1>", sizeof(char) * 40, 0);
 		}
 		closesocket(clientSocket);
 
