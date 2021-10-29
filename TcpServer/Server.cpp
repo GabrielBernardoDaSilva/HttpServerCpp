@@ -1,10 +1,12 @@
 #include "Server.h"
 #include <iostream>
 
-Server::Server(int port) : port(port)
+
+Server::Server(int port) : port(port), webHandler("TcpServer\\public")
 {
 	listener = {};
 	init() != 0 ? exit(1) : void();
+
 }
 
 Server::~Server()
@@ -41,11 +43,19 @@ void Server::run()
 
 		ZeroMemory(buf, 4096);
 		int bytesReceived = recv(clientSocket, buf, 4096, 0);
-
+		Request req{};
+		req.CreateRequest(buf);
 		if (bytesReceived > 0) {
-			
+
 			std::cout << buf << std::endl;
-			send(clientSocket, "HTTP/1.1 200 OK\r\n\r\n<h1>HELLO DESKTOP</h1>", sizeof(char) * 40, 0);
+
+			Response resp = webHandler.handleResponse(req);
+
+
+			std::string stringResp = resp.send();
+			int len = stringResp.size();
+			send(clientSocket, stringResp.c_str(), len, 0);
+
 		}
 		closesocket(clientSocket);
 

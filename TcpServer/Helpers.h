@@ -6,6 +6,7 @@
 #include <tuple>
 #include "Method.h"
 #include "ParseError.h"
+#include "StatusCode.h"
 
 class Helpers
 {
@@ -14,5 +15,6 @@ public:
 	static std::tuple<std::string, std::string> get_next_word(std::string full_string);
 	static Method StringToMethod(const char* method);
 	static const char* ParserErrorToString(ParseError err);
+	static const char* ParserStatusCodeToString(StatusCode statusCode);
 };
 

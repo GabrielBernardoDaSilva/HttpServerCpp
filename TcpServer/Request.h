@@ -7,13 +7,13 @@
 class Request
 {
 private:
-	const char* path;
+	std::string path;
 	QueryString* queryString;
 	Method method;
 public:
 	Request();
 	~Request();
-	const char* getPath() const { return path; }
+	std::string getPath() const { return path; }
 	const QueryString getQueryString() const { return *queryString; }
 	const Method getMethod() const { return method; }
 

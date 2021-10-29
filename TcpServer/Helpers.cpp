@@ -56,3 +56,24 @@ const char* Helpers::ParserErrorToString(ParseError err)
         return "UnknowError";
     }
 }
+
+const char* Helpers::ParserStatusCodeToString(StatusCode statusCode)
+{
+    switch (statusCode)
+    {
+    case StatusCode::Ok:
+        return "Ok";
+    case StatusCode::Created:
+        return "Created";
+    case StatusCode::NoContent:
+        return "NoContent";
+    case StatusCode::BadRequest:
+        return "BadRequest";
+    case StatusCode::Unauthorized:
+        return "Unauthorized";
+    case StatusCode::NotFound:
+        return "NotFound";
+    default:
+        return "InvalidStatusCode";
+    }
+}

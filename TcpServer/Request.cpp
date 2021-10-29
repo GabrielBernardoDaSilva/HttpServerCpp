@@ -5,9 +5,9 @@
 
 Request::Request()
 {
-	path = "asd";
+	path = "";
 	queryString = nullptr;
-	
+	method = Method::ERR;	
 }
 
 Request::~Request()
@@ -17,10 +17,10 @@ Request::~Request()
 
 void Request::CreateRequest(const char* buffer)
 {
-	std::string localMethod, path, protocol, req;
+	std::string localMethod, localPath, protocol, req;
 	std::string request(buffer);
 	std::tie(localMethod, req) = Helpers::get_next_word(request.c_str());
-	std::tie(path, req) = Helpers::get_next_word(req.c_str());
+	std::tie(localPath, req) = Helpers::get_next_word(req.c_str());
 	std::tie(protocol, req) = Helpers::get_next_word(req.c_str());
 
 	if (protocol != "HTTP/1.1")
@@ -35,9 +35,8 @@ void Request::CreateRequest(const char* buffer)
 		std::cout << "Invalid method error: " << Helpers::ParserErrorToString(ParseError::InvalidMethod) << std::endl;
 	}
 
-	if (int i = path.find_first_of("?"); i != std::string::npos) {
-		queryString = new QueryString(path.substr(i + 1, path.size()));
-		
+	if (int i = localPath.find_first_of("?"); i != std::string::npos) {
+		queryString = new QueryString(localPath.substr(i + 1, localPath.size()));	
 	}
-
+	this->path = localPath;
 }

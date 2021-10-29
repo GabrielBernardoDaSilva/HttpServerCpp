@@ -1,6 +1,7 @@
 
 #pragma once
 #include <WS2tcpip.h>
+#include "WebHandler.h"
 
 class Server
 {
@@ -14,6 +15,7 @@ private:
 	int init();
 	char buf[4096];
 	int port;
+	WebHandler webHandler;
 
 };
 
