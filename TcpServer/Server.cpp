@@ -4,7 +4,7 @@
 Server::Server(int port) : port(port)
 {
 	listener = {};
-	init();
+	init() != 0 ? exit(1) : void();
 }
 
 Server::~Server()
@@ -79,4 +79,6 @@ int Server::init()
 
 	//tell to listening
 	listen(listener, SOMAXCONN);
+
+	return 0;
 }
